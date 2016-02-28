@@ -6,6 +6,7 @@ import React, {
   Text,
   View,
   TextInput,
+  TouchableHighlight,
 } from 'react-native';
 
 class Main extends Component {
@@ -20,9 +21,13 @@ class Main extends Component {
           To get started, enter in ingredients below
         </Text>
 
-        <TextInput style={styles.input} value='Enter Ingredients...'>
-        </TextInput>
-
+        <TextInput style={styles.input} placeholder='Enter Ingredients...'/>
+        
+        <View style={styles.flowRight}>
+          <TouchableHighlight style={styles.button} underlayColor='#E62E00'>
+            <Text style={styles.buttonText}>Search</Text>
+          </TouchableHighlight>
+        </View>
       </View>
     );
   }
@@ -31,27 +36,46 @@ class Main extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: '#F8F8F8',
+    paddingLeft: 30,
+    paddingRight: 30,
   },
   welcome: {
     fontSize: 20,
-    textAlign: 'center',
     marginTop: 100,
-    //backgroundColor: 'blue',
   },
   instructions: {
-    textAlign: 'center',
     color: '#333333',
-    margin: 5,
+    marginTop: 5,
   },
   input: {
     marginTop: 50,
     height: 40,
-    borderWidth: 1,
-    borderColor: '#FFF',
+    padding: 10,
+    borderRadius: 4,
     backgroundColor: '#FFF',
+  },
+  flowRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'stretch'
+  },
+  button: {
+    flexDirection: 'row',
+    flex: 1,
+    height: 40,
+    backgroundColor: '#FF3300',
+    marginTop: 30,
+    borderRadius: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowOpacity: .5,
+    shadowOffset:{height:2}
+  },
+  buttonText: {
+    color: '#FFF',
+    fontSize: 18,
   },
 });
 
