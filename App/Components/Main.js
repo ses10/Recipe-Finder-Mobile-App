@@ -1,3 +1,5 @@
+var SearchResults = require('./SearchResults');
+
 'use strict';
 import React, {
   AppRegistry,
@@ -10,6 +12,14 @@ import React, {
 } from 'react-native';
 
 class Main extends Component {
+
+  onSearchPressed(){
+    this.props.navigator.push({
+      title : 'Results',
+      component : SearchResults
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -24,7 +34,7 @@ class Main extends Component {
         <TextInput style={styles.input} placeholder='Enter Ingredients...'/>
         
         <View style={styles.flowRight}>
-          <TouchableHighlight style={styles.button} underlayColor='#E62E00'>
+          <TouchableHighlight style={styles.button}  onPress={this.onSearchPressed.bind(this)} underlayColor='#E62E00'>
             <Text style={styles.buttonText}>Search</Text>
           </TouchableHighlight>
         </View>
