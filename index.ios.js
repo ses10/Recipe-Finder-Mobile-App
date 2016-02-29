@@ -1,4 +1,4 @@
-var Main = require('./App/Components/Main')
+var Main = require('./App/Components/Main');
 
 'use strict';
 import React, {
