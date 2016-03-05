@@ -38,7 +38,7 @@ class SearchResults extends Component {
   //for single row
   renderRow(rowDats){
     return(
-      <TouchableHighlight underlayColor=''>
+      <TouchableHighlight underlayColor='transparent'>
         <View style={styles.rowContainer}>
           <Image
             style={styles.thumbnail}
