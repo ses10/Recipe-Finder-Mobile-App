@@ -1,3 +1,9 @@
+/*
+First view the user will see and begins the recipe
+search by prompting user for ingredients. 
+*/
+
+
 var SearchResults = require('./SearchResults');
 
 'use strict';
@@ -69,7 +75,7 @@ const styles = StyleSheet.create({
   flowRight: {
     flexDirection: 'row',
     alignItems: 'center',
-    alignSelf: 'stretch'
+    alignSelf: 'stretch',
   },
   button: {
     flexDirection: 'row',
