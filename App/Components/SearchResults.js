@@ -46,7 +46,6 @@ class SearchResults extends Component {
   }
 
   rowPressed(){
-    console.log('test\n');
     this.props.navigator.push({
       title : 'DetailView',
       component : DetailView
@@ -105,7 +104,7 @@ const styles = StyleSheet.create({
     padding: 5
   },
   recipeName: {
-
+    
   },
   thumbnail: {
     width: 80,
