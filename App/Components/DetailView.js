@@ -38,6 +38,7 @@ class DetailView extends Component {
     );
   }
 
+
   renderRecipe(recipeData){
     return(
         <View style={styles.recipeView}>
@@ -48,6 +49,38 @@ class DetailView extends Component {
             style={styles.image}
             source={{uri: recipeData.url}}
           />
+          <Text>
+            Ingredients
+          </Text>
+          <Text>
+            -Ingredient
+          </Text>
+          <Text>
+            -Ingredient
+          </Text>
+          <Text>
+            -Ingredient
+          </Text>
+          <Text>
+            -Ingredient
+          </Text>
+          <Text>
+            -Ingredient
+          </Text>
+          <Text>
+            -Ingredient
+          </Text>
+          <Text>
+            -Ingredient
+          </Text>
+          <Text>
+            Recipe
+          </Text>
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed lectus metus. Aliquam finibus maximus elit vitae sodales. Phasellus vulputate scelerisque dui ut laoreet. Integer ac nisi vel mi tincidunt pretium. Sed libero tortor, maximus eu diam nec, lobortis pellentesque libero. Donec viverra a libero a rhoncus. Sed sodales gravida dolor in blandit. Cras at ante maximus, vestibulum nisi vitae, volutpat quam. Suspendisse lacinia venenatis ante vitae facilisis. Suspendisse leo purus, tincidunt id ipsum at, porta laoreet lectus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis ex purus, porta sit amet maximus eu, consectetur at magna. Pellentesque non condimentum tellus, commodo placerat nisl. Ut magna nisl, dictum in feugiat sed, congue quis velit.
+
+Aenean viverra laoreet cursus. Integer laoreet fermentum arcu, sed dictum tellus lobortis id. Vestibulum libero orci, sagittis non fringilla in, dictum eu tortor. Ut commodo mi ut ipsum semper feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sit amet tortor nisi. Proin sit amet egestas dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas facilisis dolor ultricies porta laoreet.
+          </Text>
         </View>
       );
   }
