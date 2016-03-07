@@ -17,10 +17,14 @@ class recipeFinder extends Component {
       <NavigatorIOS
         barTintColor='#9DBE67'
         titleTextColor='#FFF'
+        backButtonTitle= 'Back'
+        rightButtonTitle= 'Menu'
+        tintColor= '#FFF'
+        
         style={styles.container}
         initialRoute={{
           title: 'Recipe Finder',
-          component: Main
+          component: Main,
         }} />
     );
   }
