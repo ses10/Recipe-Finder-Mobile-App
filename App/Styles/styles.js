@@ -14,6 +14,33 @@ module.exports = StyleSheet.create({
     paddingRight: 30,
   },
 
+  /** Recipe List Styles **/
+  recipeListView: {
+    alignSelf: 'stretch',
+    padding: 5,
+  },
+  recipeRowContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignSelf: 'stretch',
+    backgroundColor: '#FFF',
+    marginTop: 2,
+    marginBottom: 2,
+    borderRadius: 4,
+    shadowOpacity: .5,
+    shadowOffset:{height:2},
+    alignItems: 'center',
+    padding: 5
+  },
+  recipeRightContainer:{
+    flex: 1,
+    alignItems: 'center',
+  },
+  recipeThumbnail: {
+    width: 80,
+    height: 55,
+  },
+
 });
 
 
