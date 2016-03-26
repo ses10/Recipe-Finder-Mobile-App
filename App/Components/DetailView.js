@@ -1,4 +1,5 @@
-//http://api.nestoria.co.uk/api?county=uk&pretty=1&encoding=json&listing_type=buy&action=search_listing&page=1&place_name=london
+
+var GlobalStyles = require('../Styles/styles')
 
 'use strict';
 import React, {
@@ -28,9 +29,9 @@ class DetailView extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={GlobalStyles.container}>
         <ListView
-          style = {styles.listView}
+          style = {GlobalStyles.recipeListView}
           dataSource={this.state.dataSource}
           renderRow={this.renderRecipe}
         />
@@ -87,19 +88,6 @@ Aenean viverra laoreet cursus. Integer laoreet fermentum arcu, sed dictum tellus
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingLeft: 30,
-    paddingRight: 30,
-    paddingTop: 0,
-    backgroundColor: '#F8F8F8',
-    alignItems: 'center',
-  },
-  listView: {
-    //backgroundColor: 'black',
-    alignSelf: 'stretch',
-    padding: 5,
-  },
   recipeView:{
     backgroundColor: '#FFF',
     marginTop: 2,

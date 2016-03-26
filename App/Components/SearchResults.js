@@ -3,6 +3,7 @@ Displays search results of query from Main View
 */
 
 var DetailView = require('./DetailView');
+var GlobalStyles = require('../Styles/styles')
 
 'use strict';
 import React, {
@@ -34,9 +35,9 @@ class SearchResults extends Component {
 
   render() {
     return (
-      <View style={styles.container}>        
+      <View style={GlobalStyles.container}>        
         <ListView
-          style={styles.listView}
+          style={GlobalStyles.recipeListView}
           dataSource={this.state.dataSource}
           renderRow={this.renderRow}
         />
@@ -56,13 +57,13 @@ class SearchResults extends Component {
   renderRow(rowDats){
     return(
       <TouchableHighlight onPress={this.rowPressed} underlayColor='transparent'>
-        <View style={styles.rowContainer}>
+        <View style={GlobalStyles.recipeRowContainer}>
           <Image
-            style={styles.thumbnail}
+            style={GlobalStyles.recipeThumbnail}
             source={{uri: rowDats.url}}
           />
-        <View style={styles.rightContainer}>
-          <Text style={styles.recipeName}> {rowDats.name} </Text>
+        <View style={GlobalStyles.recipeRightContainer}>
+          <Text> {rowDats.name} </Text>
         </View>
         </View>
       </TouchableHighlight>
@@ -71,45 +72,5 @@ class SearchResults extends Component {
 
 
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#F8F8F8',
-    paddingLeft: 30,
-    paddingRight: 30,
-  },
-  rightContainer:{
-    flex: 1,
-    alignItems: 'center',
-  },
-
-  listView: {
-    alignSelf: 'stretch',
-    padding: 5,
-  },
-  rowContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    alignSelf: 'stretch',
-    backgroundColor: '#FFF',
-    marginTop: 2,
-    marginBottom: 2,
-    borderRadius: 4,
-    shadowOpacity: .5,
-    shadowOffset:{height:2},
-    alignItems: 'center',
-    //justifyContent: 'center',
-    padding: 5
-  },
-  recipeName: {
-    
-  },
-  thumbnail: {
-    width: 80,
-    height: 55,
-  },
-});
 
 module.exports = SearchResults;

@@ -5,6 +5,7 @@ search by prompting user for ingredients.
 
 
 var SearchResults = require('./SearchResults');
+var GlobalStyles = require('../Styles/styles')
 
 'use strict';
 import React, {
@@ -28,7 +29,7 @@ class Main extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={GlobalStyles.container}>
 
         <Text style={styles.welcome}>
           Welcome to Recipe Finder!
@@ -50,13 +51,7 @@ class Main extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#F8F8F8',
-    paddingLeft: 30,
-    paddingRight: 30,
-  },
+
   welcome: {
     fontSize: 20,
     marginTop: 100,
