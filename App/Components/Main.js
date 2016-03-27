@@ -18,6 +18,22 @@ import React, {
   TouchableHighlight,
 } from 'react-native';
 
+//Creates url query string for Edamam API and returns it
+function generateQuery(ingredients){
+
+    var params = {
+      q: ingredients,
+      app_id: GLOBAL.API_ID,
+      app_key: GLOBAL.API_KEY,
+    };
+
+    var paramString = [];
+    for(var key in params)
+      paramString.push(encodeURIComponent(key) + '=' + encodeURIComponent(params[key]));
+
+    return 'https://api.edamam.com/search?' + paramString.join('&');
+}
+
 class Main extends Component {
 
   constructor(props){
@@ -29,7 +45,9 @@ class Main extends Component {
     this.setState({searchString: event.nativeEvent.text});
   }
 
-  onSearchPressed(){
+
+  onSearchPressed(event){
+    query = generateQuery(this.state.searchString);
     this.props.navigator.push({
       title : 'Results',
       component : SearchResults
