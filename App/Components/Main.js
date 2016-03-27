@@ -20,6 +20,15 @@ import React, {
 
 class Main extends Component {
 
+  constructor(props){
+    super(props);
+    this.state = {searchString: ''};
+  }
+
+  onTextChanged(event){
+    this.setState({searchString: event.nativeEvent.text});
+  }
+
   onSearchPressed(){
     this.props.navigator.push({
       title : 'Results',
@@ -38,7 +47,7 @@ class Main extends Component {
           To get started, enter in ingredients below
         </Text>
 
-        <TextInput style={styles.input} placeholder='Enter Ingredients...'/>
+        <TextInput style={styles.input} onChange={this.onTextChanged.bind(this)} placeholder='Enter Ingredients...'/>
         
         <View style={styles.flowRight}>
           <TouchableHighlight style={styles.button}  onPress={this.onSearchPressed.bind(this)} underlayColor='#E62E00'>
