@@ -3,7 +3,7 @@ First view the user will see and begins the recipe
 search by prompting user for ingredients. 
 */
 
-
+var GLOBAL = require('../credentials.js');
 var SearchResults = require('./SearchResults');
 var GlobalStyles = require('../Styles/styles')
 
