@@ -45,13 +45,36 @@ class Main extends Component {
     this.setState({searchString: event.nativeEvent.text});
   }
 
+  test(a){
+    console.log(a);
+  }
+
+  //handles API reponse
+  hdlResponse(response){
+    //go to Search Results view with 
+    //newly found recipes
+    this.props.navigator.push({
+      title : 'Results',
+      component : SearchResults,
+      passProps: {recipes: response.hits},
+    });
+  }
+
+  //intializes API request
+  executeQuery(query){
+    fetch(query)
+        .then(response => response.json())
+        .then(responseData => this.hdlResponse(responseData))
+        /*TODO  **/
+        .catch( function(){ 
+
+
+         } );
+  }
 
   onSearchPressed(event){
     query = generateQuery(this.state.searchString);
-    this.props.navigator.push({
-      title : 'Results',
-      component : SearchResults
-    });
+    this.executeQuery(query);
   }
 
   render() {
