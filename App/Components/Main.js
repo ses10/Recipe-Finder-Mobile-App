@@ -45,10 +45,6 @@ class Main extends Component {
     this.setState({searchString: event.nativeEvent.text});
   }
 
-  test(a){
-    console.log(a);
-  }
-
   //handles API reponse
   hdlResponse(response){
     //go to Search Results view with 
