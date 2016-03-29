@@ -34,7 +34,7 @@ module.exports = StyleSheet.create({
   },
   recipeRightContainer:{
     flex: 1,
-    alignItems: 'center',
+    paddingLeft: 5,
   },
   recipeThumbnail: {
     width: 80,
