@@ -49,11 +49,11 @@ class SearchResults extends Component {
 
   //Go to DetailView and 
   //pass clicked recipe to DetailView
-  rowPressed(recipe){
+  rowPressed(recipeData){
     this.props.navigator.push({
       title : 'DetailView',
       component : DetailView,
-      passProps: {recipe: recipe},
+      passProps: {recipe: recipeData.recipe},
     });
   }
 
