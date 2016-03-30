@@ -47,10 +47,13 @@ class SearchResults extends Component {
     );
   }
 
-  rowPressed(){
+  //Go to DetailView and 
+  //pass clicked recipe to DetailView
+  rowPressed(recipe){
     this.props.navigator.push({
       title : 'DetailView',
-      component : DetailView
+      component : DetailView,
+      passProps: {recipe: recipe},
     });
   }
 
@@ -59,7 +62,7 @@ class SearchResults extends Component {
 
     var charLimit = 25;
     return(
-      <TouchableHighlight onPress={this.rowPressed} underlayColor='transparent'>
+      <TouchableHighlight onPress={ () => this.rowPressed(rowDats)} underlayColor='transparent'>
         <View style={GlobalStyles.recipeRowContainer}>
           <Image
             style={GlobalStyles.recipeThumbnail}
