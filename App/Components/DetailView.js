@@ -22,7 +22,7 @@ class DetailView extends Component {
     var dataSource = new ListView.DataSource(
       {rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: dataSource.cloneWithRows([{name: 'Chicken Fingers', url: 'http://foodnetwork.sndimg.com/content/dam/images/food/fullset/2008/3/28/0/NY0108_Chicken-Tenders-with-Honey-Mustard-Sauce.jpg.rend.sni12col.landscape.jpeg'}]),
+      dataSource: dataSource.cloneWithRows({recipe: this.props.recipe})
     };
  
   }
@@ -40,40 +40,42 @@ class DetailView extends Component {
   }
 
 
-  renderRecipe(recipeData){
+  renderRecipe(recipe){
+    console.log(recipe.ingredientLines[0]);
+    
+    var ingredients = [];
+    for(i = 0; i < recipe.ingredientLines.length; i++)
+    {
+      ingredients.push(
+          <Text key={i} style={styles.ingredient}>
+            {recipe.ingredientLines[i]}
+          </Text>
+        );
+    }
+
     return(
         <View style={styles.recipeView}>
           <Text style={styles.recipeTitle}>
-            {recipeData.name}
+            {recipe.label}
           </Text>
           <Image
             style={styles.image}
-            source={{uri: recipeData.url}}
+            source={{uri: recipe.image}}
           />
-          <Text>
-            Ingredients
-          </Text>
-          <Text>
-            -Ingredient
-          </Text>
-          <Text>
-            -Ingredient
-          </Text>
-          <Text>
-            -Ingredient
-          </Text>
-          <Text>
-            -Ingredient
-          </Text>
-          <Text>
-            -Ingredient
-          </Text>
-          <Text>
-            -Ingredient
-          </Text>
-          <Text>
-            -Ingredient
-          </Text>
+
+          <View style={styles.calorieSection}>
+            <Text style={styles.calorisesTitle}>Calories </Text>
+            <Text> {parseInt(recipe.calories)} </Text>
+          </View>
+
+          <View style={styles.ingredientsSection}>
+            <Text style={styles.ingredientsTitle}>
+              Ingredients
+            </Text>
+
+            { ingredients }
+          </View>
+
           <Text>
             Recipe
           </Text>
@@ -94,16 +96,38 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     shadowOpacity: .5,
     shadowOffset:{height:2},
-    alignItems: 'center',
+    //alignItems: 'center',
     paddingBottom: 5,
   },
   recipeTitle:{
     fontSize: 18,
     margin: 5,
+    textAlign: 'center',
   },
   image:{
     width: 290,
     height: 180,
+    alignSelf: 'center'
+  },
+
+  calorieSection:{
+    marginTop: 5,
+  },
+  calorisesTitle:{
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+
+  ingredientsSection:{
+    marginTop: 5,
+  },
+  ingredientsTitle:{
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  ingredient:{
+    marginTop: 4,
+    paddingLeft: 5,
   }
 });
 
