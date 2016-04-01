@@ -63,13 +63,18 @@ class DetailView extends Component {
             source={{uri: recipe.image}}
           />
 
-          <View style={styles.calorieSection}>
-            <Text style={styles.calorisesTitle}>Calories </Text>
-            <Text> {parseInt(recipe.calories)} </Text>
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Calories per Serving</Text>
+            <Text> {parseInt(recipe.calories / recipe.yield )} </Text>
           </View>
 
-          <View style={styles.ingredientsSection}>
-            <Text style={styles.ingredientsTitle}>
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Number of Servings</Text>
+            <Text> {parseInt(recipe.yield)} </Text>
+          </View>
+
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>
               Ingredients
             </Text>
 
@@ -110,25 +115,18 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
 
-  calorieSection:{
+  section:{
     marginTop: 5,
   },
-  calorisesTitle:{
+  sectionTitle:{
     fontSize: 16,
     fontWeight: 'bold',
   },
 
-  ingredientsSection:{
-    marginTop: 5,
-  },
-  ingredientsTitle:{
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
   ingredient:{
     marginTop: 4,
     paddingLeft: 5,
-  }
+  },
 });
 
 module.exports = DetailView;
