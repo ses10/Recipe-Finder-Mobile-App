@@ -41,7 +41,6 @@ class DetailView extends Component {
 
 
   renderRecipe(recipe){
-    console.log(recipe.ingredientLines[0]);
     
     var ingredients = [];
     for(i = 0; i < recipe.ingredientLines.length; i++)
@@ -51,6 +50,18 @@ class DetailView extends Component {
             {recipe.ingredientLines[i]}
           </Text>
         );
+    }
+
+    //we only want certain nutritional info
+    var nutrientKeys = ['FAT', 'CHOCDF', 'FIBTG', 'PROCNT', 'NA', 'CA', 'MG', 'K', 'FE', 'ZN', 'P', 'VITA_RAE', 'VITC', 'VITB6A', 'TOCPHA', 'VITK1'];
+    var nutrients= [];
+
+    for(nutrient of nutrientKeys){
+      nutrients.push(
+        <View key={nutrient} style={styles.nutrientContainer}>
+          <Text style={styles.leftText}>{recipe.totalNutrients[nutrient].label}</Text>
+          <Text style={styles.rightText}>{parseInt(recipe.totalNutrients[nutrient].quantity / recipe.yield)}{recipe.totalNutrients[nutrient].unit}</Text>
+        </View>);
     }
 
     return(
@@ -81,14 +92,11 @@ class DetailView extends Component {
             { ingredients }
           </View>
 
-          <Text>
-            Recipe
-          </Text>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed lectus metus. Aliquam finibus maximus elit vitae sodales. Phasellus vulputate scelerisque dui ut laoreet. Integer ac nisi vel mi tincidunt pretium. Sed libero tortor, maximus eu diam nec, lobortis pellentesque libero. Donec viverra a libero a rhoncus. Sed sodales gravida dolor in blandit. Cras at ante maximus, vestibulum nisi vitae, volutpat quam. Suspendisse lacinia venenatis ante vitae facilisis. Suspendisse leo purus, tincidunt id ipsum at, porta laoreet lectus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis ex purus, porta sit amet maximus eu, consectetur at magna. Pellentesque non condimentum tellus, commodo placerat nisl. Ut magna nisl, dictum in feugiat sed, congue quis velit.
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Nutrients per Serving</Text>
+            { nutrients }
+          </View>
 
-Aenean viverra laoreet cursus. Integer laoreet fermentum arcu, sed dictum tellus lobortis id. Vestibulum libero orci, sagittis non fringilla in, dictum eu tortor. Ut commodo mi ut ipsum semper feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sit amet tortor nisi. Proin sit amet egestas dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas facilisis dolor ultricies porta laoreet.
-          </Text>
         </View>
       );
   }
@@ -101,7 +109,6 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     shadowOpacity: .5,
     shadowOffset:{height:2},
-    //alignItems: 'center',
     paddingBottom: 5,
   },
   recipeTitle:{
@@ -117,6 +124,7 @@ const styles = StyleSheet.create({
 
   section:{
     marginTop: 5,
+    paddingLeft: 5,
   },
   sectionTitle:{
     fontSize: 16,
@@ -127,6 +135,20 @@ const styles = StyleSheet.create({
     marginTop: 4,
     paddingLeft: 5,
   },
+
+  nutrientContainer:{
+    flex:1,
+    flexDirection: 'row',
+  },
+  leftText:{
+    flex: 1,
+    paddingLeft: 5,
+  },
+  rightText:{
+    flex: 2,
+    textAlign: 'right',
+    paddingRight: 10,
+  }
 });
 
 module.exports = DetailView;
