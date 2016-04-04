@@ -13,6 +13,7 @@ import React, {
   ListView,
   ScrollView,
   Image,
+  Linking,
 } from 'react-native';
 
 class DetailView extends Component {
@@ -24,7 +25,7 @@ class DetailView extends Component {
     this.state = {
       dataSource: dataSource.cloneWithRows({recipe: this.props.recipe})
     };
- 
+    
   }
 
   render() {
@@ -39,9 +40,7 @@ class DetailView extends Component {
     );
   }
 
-
   renderRecipe(recipe){
-    
     var ingredients = [];
     for(i = 0; i < recipe.ingredientLines.length; i++)
     {
@@ -97,6 +96,10 @@ class DetailView extends Component {
             { nutrients }
           </View>
 
+          <TouchableHighlight style={styles.button} onPress={()=> {Linking.openURL(recipe.url)}} underlayColor='#E62E00'>
+            <Text style={styles.buttonText}>Go to Recipe</Text>
+          </TouchableHighlight>
+
         </View>
       );
   }
@@ -148,7 +151,24 @@ const styles = StyleSheet.create({
     flex: 2,
     textAlign: 'right',
     paddingRight: 10,
-  }
+  },
+
+  button: {
+    flexDirection: 'row',
+    flex: 1,
+    height: 40,
+    backgroundColor: '#FF3300',
+    margin: 15,
+    borderRadius: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowOpacity: .5,
+    shadowOffset:{height:2}
+  },
+  buttonText: {
+    color: '#FFF',
+    fontSize: 18,
+  },
 });
 
 module.exports = DetailView;
