@@ -14,6 +14,7 @@ import React, {
   ScrollView,
   Image,
   Linking,
+  AlertIOS,
 } from 'react-native';
 
 class DetailView extends Component {
@@ -100,6 +101,10 @@ class DetailView extends Component {
             <Text style={styles.buttonText}>Go to Recipe</Text>
           </TouchableHighlight>
 
+          <TouchableHighlight style={styles.button}  onPress={()=>{AlertIOS.alert('Recipe Saved');}} underlayColor='#E62E00'>
+            <Text style={styles.buttonText}>Save</Text>
+          </TouchableHighlight>
+
         </View>
       );
   }
@@ -159,6 +164,8 @@ const styles = StyleSheet.create({
     height: 40,
     backgroundColor: '#FF3300',
     margin: 15,
+    marginTop: 12,
+    marginBottom: 5,
     borderRadius: 4,
     justifyContent: 'center',
     alignItems: 'center',
