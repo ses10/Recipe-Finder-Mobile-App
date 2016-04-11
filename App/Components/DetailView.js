@@ -15,6 +15,7 @@ import React, {
   Image,
   Linking,
   AlertIOS,
+  AsyncStorage
 } from 'react-native';
 
 class DetailView extends Component {
@@ -27,6 +28,9 @@ class DetailView extends Component {
       dataSource: dataSource.cloneWithRows({recipe: this.props.recipe})
     };
     
+    //bind functions
+    this.renderRecipe = this.renderRecipe.bind(this);
+    this.onSavePress = this.onSavePress.bind(this);
   }
 
   render() {
@@ -41,7 +45,15 @@ class DetailView extends Component {
     );
   }
 
+  onSavePress(){
+
+      //save current recipe to storage, use uri as key
+
+      AlertIOS.alert('Recipe Saved');
+  }
+
   renderRecipe(recipe){
+
     var ingredients = [];
     for(i = 0; i < recipe.ingredientLines.length; i++)
     {
@@ -101,7 +113,7 @@ class DetailView extends Component {
             <Text style={styles.buttonText}>Go to Recipe</Text>
           </TouchableHighlight>
 
-          <TouchableHighlight style={styles.button}  onPress={()=>{AlertIOS.alert('Recipe Saved');}} underlayColor='#E62E00'>
+          <TouchableHighlight style={styles.button}  onPress={ ()=>this.onSavePress() } underlayColor='#E62E00'>
             <Text style={styles.buttonText}>Save</Text>
           </TouchableHighlight>
 
