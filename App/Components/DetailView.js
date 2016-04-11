@@ -15,7 +15,7 @@ import React, {
   Image,
   Linking,
   AlertIOS,
-  AsyncStorage
+  AsyncStorage,
 } from 'react-native';
 
 class DetailView extends Component {
@@ -48,7 +48,7 @@ class DetailView extends Component {
   onSavePress(){
 
       //save current recipe to storage, use uri as key
-
+      AsyncStorage.setItem(this.props.recipe.uri, JSON.stringify(this.props.recipe));
       AlertIOS.alert('Recipe Saved');
   }
 
