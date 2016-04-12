@@ -48,7 +48,7 @@ class DetailView extends Component {
   onSavePress(){
 
       //save current recipe to storage, use uri as key
-      AsyncStorage.setItem(this.props.recipe.uri, JSON.stringify(this.props.recipe));
+      AsyncStorage.setItem(this.props.recipe.uri, JSON.stringify(this.props.recipeData));
       AlertIOS.alert('Recipe Saved');
   }
 

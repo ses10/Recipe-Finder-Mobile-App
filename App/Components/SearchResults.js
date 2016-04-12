@@ -32,6 +32,8 @@ class SearchResults extends Component {
     //bind functions
     this.renderRow = this.renderRow.bind(this);
     this.rowPressed = this.rowPressed.bind(this);
+
+    console.log(this.props.recipes);
   }
 
   render() {
@@ -53,7 +55,9 @@ class SearchResults extends Component {
     this.props.navigator.push({
       title : 'DetailView',
       component : DetailView,
-      passProps: {recipe: recipeData.recipe},
+      passProps: {recipe: recipeData.recipe,
+                  recipeData: recipeData
+                },
     });
   }
 
