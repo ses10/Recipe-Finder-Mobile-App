@@ -11,10 +11,15 @@ import React, {
   View,
   TextInput,
   NavigatorIOS,
+  AsyncStorage,
 } from 'react-native';
 
 class recipeFinder extends Component {
   
+  loadRecipes(){
+
+  }
+
   render() {
     return (
       <NavigatorIOS
@@ -26,11 +31,27 @@ class recipeFinder extends Component {
         tintColor= '#FFF'
         style={styles.container}
         onRightButtonPress = {() => {
-              this.refs.nav.navigator.push({
-                title : 'My Recipes',
-                component : SavedRecipes,
-                rightButtonTitle: ''
-              });}}
+
+              var recipes = new Array();
+
+              AsyncStorage.getAllKeys()
+                .then((keys)=>{ AsyncStorage.multiGet(keys)
+                                    .then(results => {
+                                      for(data in results)
+                                      {
+                                        recipes.push(JSON.parse(results[data][1]));
+                                      } 
+                                      //now pass saved recipes to SavedRecipes view
+                                      this.refs.nav.navigator.push({
+                                                      title : 'My Recipes',
+                                                      component : SavedRecipes,
+                                                      rightButtonTitle: '',
+                                                      passProps: {recipes: recipes},
+                                                    });
+                    
+                                    }).done(); 
+                }).done();
+            }}
 
         initialRoute={{
           title: 'Recipe Finder',
