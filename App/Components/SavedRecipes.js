@@ -46,24 +46,35 @@ class SavedRecipes extends Component {
     );
   }
 
-  rowPressed(){
+  rowPressed(recipeData){
     this.props.navigator.push({
       title : 'DetailView',
-      component : DetailView
-    });  
+      component : DetailView,
+      passProps: {recipe: recipeData.recipe,
+                  recipeData: recipeData
+                },
+    });
   }
 
   //for single row
   renderRow(rowDats){
+
+    var charLimit = 25;
     return(
-      <TouchableHighlight onPress={this.rowPressed} underlayColor='transparent'>
+      <TouchableHighlight onPress={ () => this.rowPressed(rowDats) } underlayColor='transparent'>
         <View style={GlobalStyles.recipeRowContainer}>
           <Image
             style={GlobalStyles.recipeThumbnail}
             source={{uri: rowDats.recipe.image}}
           />
         <View style={GlobalStyles.recipeRightContainer}>
-          <Text> {rowDats.name} </Text>
+          <Text> {
+                  //truncate recipe name if too long
+                  ((rowDats.recipe.label).length > charLimit) ? 
+                  (((rowDats.recipe.label).substring(0, charLimit - 3)) + '...') :
+                  rowDats.recipe.label
+                 } 
+          </Text>
         </View>
         </View>
       </TouchableHighlight>
