@@ -52,7 +52,25 @@ class DetailView extends Component {
       AlertIOS.alert('Recipe Saved');
   }
 
+  onDeletePress()
+  {
+      AsyncStorage.removeItem(this.props.recipe.uri)
+        .then(()=>{ AlertIOS.alert('Removed from saved recipes', '', ()=>{this.props.navigator.popToTop();}); 
+        });
+  }
+
   renderRecipe(recipe){
+    
+    //check if current recipe is saved
+    //and render appropiate button
+    if(this.props.recipeSaved)
+      saveDeletebutton = <TouchableHighlight style={styles.button}  onPress={ ()=>this.onDeletePress() } underlayColor='#E62E00'>
+                    <Text style={styles.buttonText}>Delete</Text>
+                  </TouchableHighlight>;
+    else
+      saveDeletebutton = <TouchableHighlight style={styles.button}  onPress={ ()=>this.onSavePress() } underlayColor='#E62E00'>
+              <Text style={styles.buttonText}>Save</Text>
+            </TouchableHighlight>;      
 
     var ingredients = [];
     for(i = 0; i < recipe.ingredientLines.length; i++)
@@ -113,9 +131,7 @@ class DetailView extends Component {
             <Text style={styles.buttonText}>Go to Recipe</Text>
           </TouchableHighlight>
 
-          <TouchableHighlight style={styles.button}  onPress={ ()=>this.onSavePress() } underlayColor='#E62E00'>
-            <Text style={styles.buttonText}>Save</Text>
-          </TouchableHighlight>
+          {saveDeletebutton}
 
         </View>
       );
