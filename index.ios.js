@@ -16,10 +16,6 @@ import React, {
 
 class recipeFinder extends Component {
   
-  loadRecipes(){
-
-  }
-
   render() {
     return (
       <NavigatorIOS
