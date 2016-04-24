@@ -17,6 +17,7 @@ import React, {
 class recipeFinder extends Component {
   
   render() {
+    //AsyncStorage.clear();
     return (
       <NavigatorIOS
         ref="nav"
@@ -35,7 +36,8 @@ class recipeFinder extends Component {
                                     .then(results => {
                                       for(data in results)
                                       {
-                                        recipes.push(JSON.parse(results[data][1]));
+                                        if(results[data][1] != null)
+                                        {recipes.push(JSON.parse(results[data][1]));}      
                                       } 
                                       //now pass saved recipes to SavedRecipes view
                                       this.refs.nav.navigator.push({
