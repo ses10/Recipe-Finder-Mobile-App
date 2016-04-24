@@ -16,6 +16,7 @@ import React, {
   TouchableHighlight,
   ListView,
   Image,
+  AsyncStorage,
 } from 'react-native';
 
 class SearchResults extends Component {
@@ -52,12 +53,22 @@ class SearchResults extends Component {
   //Go to DetailView and 
   //pass clicked recipe to DetailView
   rowPressed(recipeData){
-    this.props.navigator.push({
-      title : 'DetailView',
-      component : DetailView,
-      passProps: {recipe: recipeData.recipe,
-                  recipeData: recipeData
-                },
+    var isSaved = false;
+
+    //check if current recipe is saved
+    //and render appropiate button
+    AsyncStorage.getItem(recipeData.recipe.uri, (err, result)=>{
+      if(result != null)
+        isSaved = true;
+    }).done(()=>{
+          this.props.navigator.push({
+            title : 'DetailView',
+            component : DetailView,
+            passProps: {recipe: recipeData.recipe,
+                        recipeData: recipeData,
+                        recipeSaved: isSaved,
+                      },
+          });
     });
   }
 

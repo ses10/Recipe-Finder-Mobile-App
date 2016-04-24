@@ -47,12 +47,22 @@ class SavedRecipes extends Component {
   }
 
   rowPressed(recipeData){
-    this.props.navigator.push({
-      title : 'DetailView',
-      component : DetailView,
-      passProps: {recipe: recipeData.recipe,
-                  recipeData: recipeData
-                },
+    var isSaved = false;
+
+    //check if current recipe is saved
+    //and render appropiate button
+    AsyncStorage.getItem(recipeData.recipe.uri, (err, result)=>{
+      if(result != null)
+        isSaved = true;
+    }).done(()=>{
+          this.props.navigator.push({
+            title : 'DetailView',
+            component : DetailView,
+            passProps: {recipe: recipeData.recipe,
+                        recipeData: recipeData,
+                        recipeSaved: isSaved,
+                      },
+          });
     });
   }
 
