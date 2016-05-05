@@ -34,7 +34,6 @@ class SearchResults extends Component {
     this.renderRow = this.renderRow.bind(this);
     this.rowPressed = this.rowPressed.bind(this);
 
-    console.log(this.props.recipes);
   }
 
   render() {
